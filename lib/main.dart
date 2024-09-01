@@ -11,19 +11,40 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var kColorScheme = ColorScheme.fromSeed(seedColor: Colors.purple);
+    var kDarkColorScheme = ColorScheme.fromSeed(
+      seedColor: Colors.deepPurple,
+      brightness: Brightness.dark,
+    );
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Expense Tracker',
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: kDarkColorScheme,
+        cardTheme: CardTheme().copyWith(
+          color: kDarkColorScheme.secondaryContainer,
+          margin: const EdgeInsets.all(12.0),
+        ),
+      ),
       theme: ThemeData().copyWith(
-          colorScheme: kColorScheme,
-          appBarTheme: AppBarTheme().copyWith(
-            backgroundColor: kColorScheme.onPrimaryContainer,
-            foregroundColor: kColorScheme.primaryContainer,
-          ),
-          cardTheme: CardTheme().copyWith(
-              color: kColorScheme.secondaryContainer,
-              margin: const EdgeInsets.all(12.0))),
+        colorScheme: kColorScheme,
+        appBarTheme: AppBarTheme().copyWith(
+          backgroundColor: kColorScheme.onPrimaryContainer,
+          foregroundColor: kColorScheme.primaryContainer,
+        ),
+        cardTheme: CardTheme().copyWith(
+          color: kColorScheme.secondaryContainer,
+          margin: const EdgeInsets.all(12.0),
+        ),
+        textTheme: ThemeData().textTheme.copyWith(
+              titleLarge: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: kColorScheme.onSecondaryContainer,
+                fontSize: 17,
+              ),
+            ),
+      ),
+      themeMode: ThemeMode.light,
       home: const Expenses(),
     );
   }

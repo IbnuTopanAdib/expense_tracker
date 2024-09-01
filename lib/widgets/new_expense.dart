@@ -1,7 +1,7 @@
 import 'package:expense_tracker/model/expense.dart';
-import 'package:expense_tracker/widgets/expense_list.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:intl/intl.dart';
 
 class NewExpense extends StatefulWidget {
@@ -49,7 +49,7 @@ class _NewExpenseState extends State<NewExpense> {
 
     widget.addNewExpense(Expense(
         title: _titleController.text,
-        amount: _amountController.text,
+        amount: enteredAmount,
         date: _selectedDate!,
         category: _selectedCategory));
     Navigator.pop(context);

@@ -1,6 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 
 const uuid = Uuid();
 
@@ -18,7 +19,7 @@ const categoryIcons = {
 class Expense {
   final String id;
   final String title;
-  final String amount;
+  final double amount;
   final DateTime date;
   final Category category;
 
@@ -31,5 +32,31 @@ class Expense {
 
   String get formatDate {
     return formatter.format(date);
+  }
+}
+
+class ExpenseBucket {
+  Category category;
+  List<Expense> expenses;
+  ExpenseBucket({
+    required this.category,
+    required this.expenses,
+  });
+
+  ExpenseBucket.forCategory(List<Expense> allExpenses, this.category)
+      : expenses = allExpenses
+            .where(
+              (expense) => expense.category == category,
+            )
+            .toList();
+
+  double get totalAmount {
+    double sum = 0;
+
+    for (final element in expenses) {
+      sum += element.amount;
+    }
+
+    return sum;
   }
 }

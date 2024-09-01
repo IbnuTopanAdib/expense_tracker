@@ -1,6 +1,7 @@
+import 'package:expense_tracker/widgets/chart.dart';
 import 'package:expense_tracker/widgets/expense_item.dart';
 import 'package:expense_tracker/model/expense.dart';
-import 'package:expense_tracker/widgets/expense_list.dart';
+
 import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 
@@ -26,13 +27,13 @@ class _ExpensesState extends State<Expenses> {
   List<Expense> expenses = [
     Expense(
       title: 'Flutter pak erico',
-      amount: '300',
+      amount: 300,
       date: DateTime.now(),
       category: Category.belajar,
     ),
     Expense(
       title: 'USB C',
-      amount: '50',
+      amount: 50,
       date: DateTime.now(),
       category: Category.kerja,
     )
@@ -50,8 +51,8 @@ class _ExpensesState extends State<Expenses> {
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Kamu menghapus data expense'),
-        duration: Duration(seconds: 3),
+        content: const Text('Kamu menghapus data expense'),
+        duration: const Duration(seconds: 3),
         action: SnackBarAction(
           label: 'Undo',
           onPressed: () {
@@ -81,12 +82,16 @@ class _ExpensesState extends State<Expenses> {
       body: SafeArea(
         child: Column(
           children: [
-            Text('The Chart'),
+            Chart(expenses: expenses),
             Expanded(
               child: ListView.builder(
                 itemCount: expenses.length,
                 itemBuilder: (context, index) {
                   return Dismissible(
+                    background: Container(
+                      color: Theme.of(context).colorScheme.errorContainer,
+                      margin: Theme.of(context).cardTheme.margin,
+                    ),
                     onDismissed: (direction) {
                       removeExpense(expenses[index]);
                     },
