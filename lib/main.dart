@@ -1,8 +1,14 @@
 import 'package:expense_tracker/expenses.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp());
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+  //   (value) {
+  //   },
+  // );
+      runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,18 +27,18 @@ class MyApp extends StatelessWidget {
       title: 'Expense Tracker',
       darkTheme: ThemeData.dark().copyWith(
         colorScheme: kDarkColorScheme,
-        cardTheme: CardTheme().copyWith(
+        cardTheme: const CardTheme().copyWith(
           color: kDarkColorScheme.secondaryContainer,
           margin: const EdgeInsets.all(12.0),
         ),
       ),
       theme: ThemeData().copyWith(
         colorScheme: kColorScheme,
-        appBarTheme: AppBarTheme().copyWith(
+        appBarTheme: const AppBarTheme().copyWith(
           backgroundColor: kColorScheme.onPrimaryContainer,
           foregroundColor: kColorScheme.primaryContainer,
         ),
-        cardTheme: CardTheme().copyWith(
+        cardTheme: const CardTheme().copyWith(
           color: kColorScheme.secondaryContainer,
           margin: const EdgeInsets.all(12.0),
         ),
